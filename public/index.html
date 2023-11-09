@@ -1,0 +1,37 @@
+<!-- ./public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Space Convoy</title>
+    <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml, <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 132 132%22><text y=%221em%22 font-size=%22100%22>🌌</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <form id="username">
+                <input type="text" placeholder="Username" />
+            </form>
+
+            <div id="counter">0 online</div>
+
+            <h1 id="title">Chat</h1>
+        </header>
+
+        <div id="chat"></div>
+
+        <form id="send-activity">
+            <input id="send-recipient" type="text" placeholder="Type here..." />
+            <button id="send-button">Send</button>
+        </form>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/cookie_js@1.4.2/dist/cookie.umd.js"></script>
+    <script src="https://unpkg.com/socket.io-client@2/dist/socket.io.slim.js"></script>
+    <script src="chat.js"></script>
+  </body>
+</html>

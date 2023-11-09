@@ -1,0 +1,175 @@
+/* Page */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #141414;
+    font-family: monospace;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+button, input {
+    background: #313131;
+    border: none;
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+input {
+    color: #ddd;
+}
+
+input:focus {
+    outline: none;
+}
+
+main {
+    width: calc(100% - 20px);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Upper content */
+
+#counter {
+    float: right;
+}
+
+#counter, #title {
+    color: #1e9713;
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Chat */
+
+#chat {
+    background: #313131;
+    height: calc(97vh - 7rem);
+    overflow-y: auto;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+#chat a, #chat strong {
+    color: #1e9713;
+}
+
+.datetimeMessage, .serverMessage {
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 3px 5px 1px 5px;
+    width: max-content;
+}
+
+.datetimeMessage {
+    background-color: #3a3a3aee;
+}
+
+.datetimeMessage p {
+    color: #ddd;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.serverMessage {
+    background-color: #ff00003b;
+    display: block;
+    max-width: 30%;
+    text-align: center;
+    white-space: pre-wrap;
+}
+
+.serverMessage p {
+    color: #ddd;
+    font-size: 1rem;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.username {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.userMessage {
+    background-color: #3a3a3aee;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+    max-width: 40%;
+    padding: 10px;
+    white-space: pre-wrap;
+    width: max-content;
+}
+
+.userMessage p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.userMessage .username {
+    color: #1e9713;
+    font-size: 1rem;
+    word-wrap: break-word;
+}
+
+.userMessage .text {
+    color: #ddd;
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.userMessage .time {
+    color: #dddddd23;
+    float: right;
+    font-size: 0.7rem;
+    margin: 0 5px;
+    text-align: right;
+}
+
+.userMessageSender {
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: flex-end;
+}
+
+.userMessageSender .text {
+    text-align: right;
+}
+
+/* Bottom content */
+
+#send-activity {
+    display: flex;
+    height: 3rem;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#send-button {
+    color: #1e9713;
+    width: 25%;
+}
+
+#send-button:hover {
+    cursor: pointer;
+    background: #1e9713;
+    color: #313131;
+}
+
+#send-button:active {
+    box-shadow: -1px -1px 1px #1e9713;
+}
+
+#send-recipient {
+    width: 74%;
+}
