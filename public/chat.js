@@ -1,3 +1,6 @@
+// Initalize socket
+const socket = io();
+
 // Set username cookie
 function setCookie(name, value, expDays) {
     const date = new Date();
@@ -43,6 +46,7 @@ function sendMessage(data, type, append) {
 
     // Handle server messages
     if (type === 1) {
+        // If the username changed I'll receive an array
         if (Array.isArray(msg)) {
             msg = "'" + msg[0] + "' is now known as '" + msg[1] + "'";
         }
@@ -162,7 +166,7 @@ function loadChat() {
     }).fail( () => {
         sendMessage({
             "t": "01/01/1984 00:00:00",
-            "usr": "Server",
+            "usr": "Warning",
             "msg": "The chat can't be loaded",
             "type": "server"
         }, 1, false );
@@ -187,12 +191,10 @@ $("#chat").scroll(() => {
     }
 });
 
-// Initalize socket
-const socket = io();
-
 // Users counter
-socket.on("count", (data) => {
-    $("#counter").html(data + " online");
+socket.on("count", (c) => {
+    // Update counter
+    $("#counter").html(c + " online");
 });
 
 // Get and set messages received from the socket
@@ -243,7 +245,7 @@ $("#username").submit( e => {
             ("0" + date.getHours()).slice(-2) + ":" +
             ("0" + date.getMinutes()).slice(-2) + ":" +
             ("0" + date.getSeconds()).slice(-2),
-        usr: "Server",
+        usr: "Info",
         msg: [oldUser, newUser],
         type: "server"
     });

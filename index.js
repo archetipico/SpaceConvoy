@@ -41,14 +41,13 @@ Object.keys(nets).forEach((interface) => {
         }
     });
 });
-const LOCAL = address + ":443";
 
 // First middleware
 app.use("/", (req, _, next) => {
     if (req.secure) {
         const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
-        journalLog("[" + Date.now() + "] " + ip + " \x1b[34m" + req.method + "\x1b[0m https://" + LOCAL + req.url);
+        journalLog("[" + Date.now() + "] " + ip + " \x1b[34m" + req.method + "\x1b[0m " + address + req.url);
         next();
     }
 });
@@ -64,14 +63,14 @@ app.get("/", (_, res) => {
 io.on("connection", socket => {
     const ip = socket.handshake.address || socket.remoteAddress;
 
-    io.emit("count", Object.keys(io.sockets.sockets).length );
+    io.emit("count", Object.keys(io.sockets.sockets).length);
 
     if (ip) {
-        journalLog("[" + Date.now() + "] " + ip + " \x1b[32mCONNECT\x1b[0m " + LOCAL);
+        journalLog("[" + Date.now() + "] " + ip + " \x1b[32mCONNECT\x1b[0m " + address);
 
         socket.on("disconnect", () => {
-            io.emit("count", Object.keys( io.sockets.sockets ).length);
-            journalLog("[" + Date.now() + "] " + ip + " \x1b[35mDISCONNECT\x1b[0m " + LOCAL);
+            io.emit("count", Object.keys(io.sockets.sockets).length);
+            journalLog("[" + Date.now() + "] " + ip + " \x1b[35mDISCONNECT\x1b[0m " + address);
         });
 
         socket.on("message", msg => {
@@ -81,14 +80,14 @@ io.on("connection", socket => {
             });
 
             io.emit("message", msg);
-            journalLog("[" + Date.now() + "] " + ip + " \x1b[34mPOST\x1b[0m " + value.length + " Byte and " + LOCAL + " emitted to " + Object.keys(io.sockets.sockets).length + " sockets");
+            journalLog("[" + Date.now() + "] " + ip + " \x1b[34mPOST\x1b[0m " + value.length + " Byte and " + address + " emitted to " + Object.keys(io.sockets.sockets).length + " sockets");
         });
     }
 });
 
 // Listening
 server.listen(443, () => {
-    journalLog("Listening on " + LOCAL);
+    journalLog("Listening on https://" + address);
 });
 
 // 404
